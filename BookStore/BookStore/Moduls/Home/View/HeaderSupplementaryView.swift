@@ -9,15 +9,16 @@ import UIKit
 import SnapKit
 
 final class HeaderSupplementaryView: UICollectionReusableView {
+    static let identifier = HeaderSupplementaryView.debugDescription()
     
     //MARK: UI Elements
-   
     private let headerLabel = UILabel.makeLabel(
         text: "Top Books",
         font: .openSansBold(ofSize: 20),
         textColor: .elements
     )
     private let seeMoreButton = UIButton.makeButton(text: "see more", buttonColor: .clear, tintColor: .elements, borderWidth: 0)
+    private var action: (() -> Void)?
     
     // MARK: - Initializer
     
@@ -39,8 +40,9 @@ final class HeaderSupplementaryView: UICollectionReusableView {
     
     // MARK: - Header Configure
     
-    func configureHeader(categoryName: String) {
-        headerLabel.text = categoryName
+    func configure(_ title: String, action: @escaping () -> Void) {
+        headerLabel.text = title
+        self.action = action
     }
     
     // MARK: - Setup Constraints
@@ -70,5 +72,6 @@ final class HeaderSupplementaryView: UICollectionReusableView {
                 self.seeMoreButton.transform = CGAffineTransform.identity
             })
         })
+        action?()
     }
 }

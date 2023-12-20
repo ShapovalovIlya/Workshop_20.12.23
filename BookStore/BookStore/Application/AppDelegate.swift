@@ -10,6 +10,8 @@ import FirebaseAuth
 import FirebaseCore
 import FirebaseFirestore
 
+// MVC -> Model, View, Controller
+
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 

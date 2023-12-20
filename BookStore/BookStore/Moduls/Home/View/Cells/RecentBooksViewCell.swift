@@ -8,6 +8,7 @@
 import UIKit
 
 final class RecentBooksViewCell: UICollectionViewCell {
+    static let identifier = RecentBooksViewCell.debugDescription()
     
     //MARK: UI Elements
     
@@ -83,6 +84,8 @@ final class RecentBooksViewCell: UICollectionViewCell {
       }
       recentBooksImageView.image = work.image
     }
+    
+//    func configure(title: String, )
     
     // MARK: - Setup Constraints
     

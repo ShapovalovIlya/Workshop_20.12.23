@@ -5,7 +5,7 @@ class CategoriesView: UIView {
     
     //MARK: - Create UIElements
     var collectionView: UICollectionView!
-    var searchBar = SearchbarView()
+    var searchBar = SearchBarView()
     
     //MARK: - Init
     override init(frame: CGRect) {

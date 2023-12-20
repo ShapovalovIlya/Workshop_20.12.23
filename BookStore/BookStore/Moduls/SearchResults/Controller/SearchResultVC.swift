@@ -7,6 +7,11 @@
 
 import UIKit
 
+protocol SearchBarVCDelegate: AnyObject {
+    func searchButtonClicked(withRequest text: String, sortingMethod: SearchResultVC.SortingMethod)
+    func searchCancelButtonClicked()
+}
+
 class SearchResultVC: UIViewController {
 
     private var udManager = UserDefaultsManager()
@@ -29,7 +34,7 @@ class SearchResultVC: UIViewController {
     var numberOfBooks = 0
     var baseSearchPlaceholder =  "Search title/author/ISBN no"
     
-    var searchBar = SearchbarView()
+    var searchBar = SearchBarView()
     
     private lazy var numberOfResultsLabel: UILabel = {
         let label = UILabel()
@@ -56,7 +61,7 @@ class SearchResultVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .background
-        searchBar.delegate = self
+        searchBar.searchBar.delegate = self
         searchBar.searchBar.text = searchRequest
         performSearchRequest()
         setupUI()
@@ -144,6 +149,9 @@ class SearchResultVC: UIViewController {
 
 
 //MARK: - Extensions
+extension SearchResultVC: UISearchBarDelegate {
+    
+}
 
 extension SearchResultVC: UICollectionViewDataSource {
     func numberOfSections(in collectionView: UICollectionView) -> Int {

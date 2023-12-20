@@ -9,6 +9,7 @@ import UIKit
 import SnapKit
 
 final class TopBooksViewCell: UICollectionViewCell {
+    static let identifier = TopBooksViewCell.debugDescription()
     
     //MARK: UI Elements
     
@@ -80,6 +81,12 @@ final class TopBooksViewCell: UICollectionViewCell {
      topBooksImageView.image = image
     }
     
+    func configure(title: String, author: String, imageUrl: String) {
+        bookTitleLabel.text = title
+        bookAuthorLabel.text = author
+        topBooksImageView.asyncImage(from: imageUrl)
+    }
+    
     // MARK: - Setup Constraints
     
     private func setConstraints() {
@@ -115,6 +122,17 @@ final class TopBooksViewCell: UICollectionViewCell {
         layoutIfNeeded()
     }
     
-    
-    
+}
+
+extension UIImageView {
+    func asyncImage(from ulrString: String) {
+        Task {
+            guard let url = URL(string: ulrString) else { return }
+            let (data, _) = try await URLSession.shared.data(for: URLRequest(url: url))
+            let image = UIImage(data: data)
+            await MainActor.run {
+                self.image = image
+            }
+        }
+    }
 }

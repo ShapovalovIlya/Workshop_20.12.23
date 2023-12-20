@@ -16,7 +16,7 @@ class CategoriesVC: UIViewController {
         categoriesView.collectionView.dataSource = self
         view = categoriesView
         view.backgroundColor = .background
-        categoriesView.searchBar.delegate = self
+//        categoriesView.searchBar.delegate = self
         navigationController?.navigationBar.isHidden = true
     }
     

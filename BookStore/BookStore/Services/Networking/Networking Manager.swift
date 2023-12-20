@@ -1,9 +1,9 @@
 import UIKit
 
-enum TrendingPeriod: String {
-    case weekly = "weekly"
-    case monthly = "monthly"
-    case yearly = "yearly"
+enum TrendingPeriod: String, CaseIterable {
+    case weekly
+    case monthly
+    case yearly
 }
 
 enum Categories: String {
